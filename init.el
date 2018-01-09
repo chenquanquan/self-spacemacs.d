@@ -378,9 +378,14 @@ before packages are loaded."
   (setq request-message-level -1)
 
   ;; For c style
-  (setq-default c-basic-offset 8
-				tab-width 8
-				indent-tabs-mode t)
+  (add-hook 'c-mode-hook (lambda ()
+                           (c-set-style "linux")
+                           (setq c-basic-offset 8
+                                 tab-width 8
+                                 indent-tabs-mode t
+                                 )
+                           )
+            )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
