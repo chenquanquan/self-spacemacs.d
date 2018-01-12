@@ -29,7 +29,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      python
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -377,6 +377,8 @@ before packages are loaded."
   (setq ycmd-startup-timeout 10)
   (setq request-message-level -1)
 
+  ;; For position
+  (global-set-key (kbd "C-;") 'evil-avy-goto-char)
   ;; For c style
   (add-hook 'c-mode-hook (lambda ()
                            (c-set-style "linux")
@@ -384,6 +386,18 @@ before packages are loaded."
                                  tab-width 8
                                  indent-tabs-mode t
                                  )
+                           (column-enforce-mode)
+                           )
+            )
+
+  ;; For c++ style
+  (add-hook 'c++-mode-hook (lambda ()
+                           (c-set-style "google")
+                           (setq c-basic-offset 4
+                                 tab-width 4
+                                 indent-tabs-mode nil
+                                 )
+                           (column-enforce-mode)
                            )
             )
   )
@@ -402,7 +416,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (youdao-dictionary names chinese-word-at-point yapfify xterm-color unfill stickyfunc-enhance srefactor smeargle shell-pop realgud test-simple loc-changes load-relative pyvenv pytest pyim pyim-basedict pyenv-mode py-isort pippel pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download org-brain mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode importmagic epc ctable concurrent hy-mode dash-functional htmlize helm-rtags helm-pydoc helm-gtags helm-gitignore helm-cscope xcscope helm-company helm-c-yasnippet google-c-style gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flycheck-ycmd flycheck-rtags flycheck-pos-tip pos-tip flycheck evil-org evil-magit magit magit-popup git-commit ghub with-editor eshell-z eshell-prompt-extras esh-help engine-mode elfeed-web simple-httpd elfeed-org elfeed-goodies ace-jump-mode noflet elfeed disaster diff-hl cython-mode company-ycmd ycmd request-deferred let-alist deferred company-statistics company-rtags rtags company-c-headers company-anaconda company cmake-mode cmake-ide levenshtein clang-format browse-at-remote auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode impatient-mode helm-css-scss haml-mode emmet-mode counsel-css counsel swiper ivy company-web web-completion-data add-node-modules-path youdao-dictionary names chinese-word-at-point yapfify xterm-color unfill stickyfunc-enhance srefactor smeargle shell-pop realgud test-simple loc-changes load-relative pyvenv pytest pyim pyim-basedict pyenv-mode py-isort pippel pip-requirements orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download org-brain mwim multi-term mmm-mode markdown-toc markdown-mode magit-gitflow live-py-mode importmagic epc ctable concurrent hy-mode dash-functional htmlize helm-rtags helm-pydoc helm-gtags helm-gitignore helm-cscope xcscope helm-company helm-c-yasnippet google-c-style gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flycheck-ycmd flycheck-rtags flycheck-pos-tip pos-tip flycheck evil-org evil-magit magit magit-popup git-commit ghub with-editor eshell-z eshell-prompt-extras esh-help engine-mode elfeed-web simple-httpd elfeed-org elfeed-goodies ace-jump-mode noflet elfeed disaster diff-hl cython-mode company-ycmd ycmd request-deferred let-alist deferred company-statistics company-rtags rtags company-c-headers company-anaconda company cmake-mode cmake-ide levenshtein clang-format browse-at-remote auto-yasnippet yasnippet anaconda-mode pythonic ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org symon string-inflection spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file neotree nameless move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
