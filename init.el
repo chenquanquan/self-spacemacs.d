@@ -505,6 +505,7 @@ before packages are loaded."
 
   ;; For golang
   (setq default-gopath (getenv "GOPATH"))
+  (setenv "PATH" (concat (getenv "PATH") ":" default-gopath "/bin"))
   (setq current-gopath "")
 
   (setq gofmt-command "goimports")
