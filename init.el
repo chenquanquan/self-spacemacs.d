@@ -60,8 +60,10 @@ This function should only modify configuration layer settings."
      graphviz
      ;;(go :variables go-backend 'lsp)
      ;;(go :variables go-use-gometalinter t)
-     (go :variables go-backend 'lsp
+     (go :variables
+         go-backend 'lsp
          godoc-at-point-function 'godoc-gogetdoc
+         go-use-golangci-lint t
          )
      lua
      nginx
@@ -73,6 +75,7 @@ This function should only modify configuration layer settings."
      html
      python
      javascript
+     lsp
      (chinese :variables
               chinese-enable-youdao-dict t)
      themes-megapack
@@ -505,6 +508,7 @@ before packages are loaded."
 
   ;; For golang
   (setq default-gopath (getenv "GOPATH"))
+  (setenv "GOROOT" (concat (getenv "HOME") "/goroot"))
   (setenv "PATH" (concat (getenv "PATH") ":" default-gopath "/bin"))
   (setq current-gopath "")
 
